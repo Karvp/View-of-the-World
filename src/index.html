@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Góc nhìn quanh em</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Quicksand:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="app" class="app-container">
+    <!-- Left Sidebar Header -->
+    <header class="sidebar-header">
+      <div class="logo-brand">
+        <div class="logo-text">Góc nhìn quanh em</div>
+      </div>
+      <nav class="nav-buttons">
+        <button class="nav-btn play-btn" id="navPlayBtn" aria-label="Chơi game">▶</button>
+      </nav>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Landing Page Screen -->
+      <section class="screen landing-page" id="landingScreen">
+        <div class="hero-content">
+          <h1 class="hero-title">Chào mừng<br>đến với<br>Góc nhìn<br>quanh em!</h1>
+          <div class="hero-illustration" aria-label="Minh họa vui nhộn">🌈</div>
+        </div>
+        <div class="section-description">
+          Trò chơi giáo dục trực quan cho trẻ em đặc biệt. Rèn luyện khả năng nhận biết, ghi nhớ và tập trung.
+        </div>
+        <button class="btn-pill start-btn" id="startGameBtn">Bắt đầu chơi</button>
+      </section>
+
+      <!-- Level Selection Screen -->
+      <section class="screen level-selection" id="levelScreen">
+        <h2 class="page-title">Chọn<br>cấp độ</h2>
+        <div class="subtitle">Mục tiêu phát triển kỹ năng</div>
+        <div class="level-cards-grid">
+          <button class="level-card colors-card" data-level="0" aria-label="Cấp 1: Màu sắc">
+            <span class="card-emoji">🎨</span>
+            <span class="card-title">Màu sắc</span>
+            <span class="card-pairs">2 cặp</span>
+          </button>
+          <button class="level-card shapes-card" data-level="1" aria-label="Cấp 2: Hình học">
+            <span class="card-emoji">🔷</span>
+            <span class="card-title">Hình học</span>
+            <span class="card-pairs">4 cặp</span>
+          </button>
+          <button class="level-card numbers-card" data-level="2" aria-label="Cấp 3: Con số">
+            <span class="card-emoji">🔢</span>
+            <span class="card-title">Con số</span>
+            <span class="card-pairs">5 cặp</span>
+          </button>
+          <button class="level-card animals-card" data-level="3" aria-label="Cấp 4: Con vật">
+            <span class="card-emoji">🐾</span>
+            <span class="card-title">Con vật</span>
+            <span class="card-pairs">6 cặp</span>
+          </button>
+          <button class="level-card emotions-card" data-level="4" aria-label="Cấp 5: Cảm xúc">
+            <span class="card-emoji">😄</span>
+            <span class="card-title">Cảm xúc</span>
+            <span class="card-pairs">7 cặp</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Game Board Screen -->
+      <section class="screen game-screen" id="gameScreen">
+        <div class="game-header">
+          <h2 class="game-title" id="gameLevelTitle">Cấp độ</h2>
+          <div class="round-info">
+            <span id="roundCounter">Ván 1</span> / <span id="roundTotal">3</span>
+          </div>
+        </div>
+        <div class="game-grid" id="gameGrid"></div>
+        <div class="game-actions">
+          <button class="btn-pill back-btn" id="backToLevelsBtn">Quay lại</button>
+        </div>
+      </section>
+
+      <!-- Victory Screen -->
+      <section class="screen victory-screen" id="victoryScreen">
+        <div class="celebration">
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+          <div class="confetti"></div>
+        </div>
+        <h2 class="victory-title dancing-emoji">🎉 Hoàn thành! 🎉</h2>
+        <div class="victory-emojis">
+          <span class="emoji-bounce">🌟</span>
+          <span class="emoji-bounce" style="animation-delay: 0.2s;">🎈</span>
+          <span class="emoji-bounce" style="animation-delay: 0.4s;">🎊</span>
+        </div>
+        <div class="victory-message" id="victoryMessage">Bạn đã hoàn thành ván 1!</div>
+        <div class="victory-actions">
+          <button class="btn-pill next-round-btn" id="nextRoundBtn">Ván tiếp theo</button>
+          <button class="btn-pill back-levels-btn" id="backToLevelsBtnVictory">Quay lại chọn cấp</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Right Footer Blocks -->
+    <footer class="sidebar-footer">
+      <div class="footer-block">
+        <div class="footer-title">Về trò chơi</div>
+        <div class="footer-text">Giáo dục & Phát triển</div>
+      </div>
+      <div class="footer-block">
+        <div class="footer-title">Hỗ trợ</div>
+        <div class="footer-text">Cho trẻ em đặc biệt</div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
