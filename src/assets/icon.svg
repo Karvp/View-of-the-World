@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">Góc nhìn quanh em</title>
+  <rect width="512" height="512" rx="112" fill="#eef6f1"/>
+  <circle cx="256" cy="256" r="158" fill="#ffffff" stroke="#2f6f57" stroke-width="28"/>
+  <circle cx="256" cy="256" r="72" fill="#2f6f57"/>
+  <circle cx="300" cy="212" r="22" fill="#ffffff" opacity=".92"/>
+</svg>

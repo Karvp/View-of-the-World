@@ -1,0 +1,19 @@
+{
+  "name": "Góc nhìn quanh em",
+  "short_name": "Góc nhìn",
+  "description": "Môi trường học qua chơi thích ứng, riêng tư và dễ tiếp cận.",
+  "lang": "vi",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f8f5",
+  "theme_color": "#eef6f1",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

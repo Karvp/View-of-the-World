@@ -1,0 +1,12 @@
+{
+  "name": "view-of-the-world",
+  "version": "2.2.0-research",
+  "private": true,
+  "description": "Adaptive inclusive learning-through-play web app",
+  "scripts": {
+    "test": "node scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

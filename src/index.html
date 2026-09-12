@@ -1,136 +1,583 @@
-<!DOCTYPE html>
-<html lang="vi">
+<!doctype html>
+<html lang="vi" data-theme="calm" data-contrast="normal" data-motion="reduced" data-targets="large">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eaf4ef">
+  <meta name="description" content="Góc nhìn quanh em — không gian học qua chơi thích ứng, riêng tư và dễ tiếp cận cho trẻ em có nhu cầu học tập đa dạng.">
   <title>Góc nhìn quanh em</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:400,700|Quicksand:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div id="app" class="app-container">
-    <!-- Left Sidebar Header -->
-    <header class="sidebar-header">
-      <div class="logo-brand">
-        <div class="logo-text">Góc nhìn quanh em</div>
-      </div>
-      <nav class="nav-buttons">
-        <button class="nav-btn play-btn" id="navPlayBtn" aria-label="Chơi game">▶</button>
+  <a class="skip-link" href="#mainContent">Bỏ qua điều hướng</a>
+
+  <div class="ambient ambient-a" aria-hidden="true"></div>
+  <div class="ambient ambient-b" aria-hidden="true"></div>
+
+  <div class="app-shell" id="app">
+    <header class="topbar" aria-label="Thanh điều hướng chính">
+      <button class="brand" type="button" data-route="home" aria-label="Về trang chủ">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 44 44" focusable="false">
+            <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.6"/>
+            <circle cx="22" cy="22" r="6" fill="currentColor"/>
+            <circle cx="26" cy="18" r="2" fill="white" opacity=".9"/>
+          </svg>
+        </span>
+        <span class="brand-copy">
+          <strong>Góc nhìn quanh em</strong>
+          <small>Khám phá theo cách của mình</small>
+        </span>
+      </button>
+
+      <nav class="main-nav" aria-label="Điều hướng">
+        <button class="nav-button is-active" type="button" data-route="home">
+          <span class="nav-icon" aria-hidden="true">⌂</span><span>Khám phá</span>
+        </button>
+        <button class="nav-button" type="button" data-route="progress">
+          <span class="nav-icon" aria-hidden="true">◔</span><span>Tiến trình</span>
+        </button>
+        <button class="nav-button" type="button" data-route="packs">
+          <span class="nav-icon" aria-hidden="true">▦</span><span>Nội dung</span>
+        </button>
+        <button class="nav-button" type="button" data-route="settings">
+          <span class="nav-icon" aria-hidden="true">⚙</span><span>Cài đặt</span>
+        </button>
       </nav>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <!-- Landing Page Screen -->
-      <section class="screen landing-page" id="landingScreen">
-        <div class="hero-content">
-          <h1 class="hero-title">Chào mừng<br>đến với<br>Góc nhìn<br>quanh em!</h1>
-          <div class="hero-illustration" aria-label="Minh họa vui nhộn">🌈</div>
+    <main id="mainContent" class="main-content" tabindex="-1">
+      <section class="screen is-active" id="homeScreen" data-screen="home" aria-labelledby="homeTitle">
+        <div class="home-hero">
+          <div class="hero-copy">
+            <span class="soft-badge"><span aria-hidden="true">✦</span> Một nơi để thử, sai và thử lại</span>
+            <h1 id="homeTitle">Mỗi cách nhìn đều mở ra một thế giới.</h1>
+            <p class="hero-lead">
+              Chọn một chuyến khám phá ngắn. Không có bảng xếp hạng, không có đồng hồ đếm ngược,
+              và bạn luôn có thể xin gợi ý, chơi nhẹ hơn hoặc nghỉ.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button primary-button--hero" type="button" id="quickStartBtn" data-activity="match">
+                <span>Bắt đầu chuyến khám phá</span><span aria-hidden="true">→</span>
+              </button>
+              <button class="secondary-button" type="button" data-route="settings">Chỉnh môi trường</button>
+            </div>
+            <div class="session-facts" aria-label="Thông tin buổi chơi">
+              <span><b aria-hidden="true">◷</b> khoảng 5–8 phút</span>
+              <span><b aria-hidden="true">◇</b> 3 chặng ngắn</span>
+              <span><b aria-hidden="true">Ⅱ</b> nghỉ bất cứ lúc nào</span>
+            </div>
+          </div>
+
+          <aside class="world-card" aria-labelledby="gardenTitle">
+            <div class="world-card-top">
+              <div>
+                <p class="mini-label">Góc khám phá của bạn</p>
+                <h2 id="gardenTitle">Khu vườn nhỏ</h2>
+              </div>
+              <span class="world-level" id="gardenLevelLabel">Mới bắt đầu</span>
+            </div>
+
+            <div class="garden-scene" id="gardenScene" aria-label="Khu vườn thay đổi theo các buổi khám phá">
+              <svg viewBox="0 0 520 290" role="img" aria-label="Minh họa khu vườn yên bình">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#dceefa"/>
+                    <stop offset="1" stop-color="#f7fbf7"/>
+                  </linearGradient>
+                </defs>
+                <rect width="520" height="290" rx="28" fill="url(#sky)"/>
+                <circle cx="425" cy="64" r="30" fill="#f6d98a" opacity=".82"/>
+                <path d="M0 222C83 181 148 197 220 223C301 253 394 183 520 212V290H0Z" fill="#cce4d2"/>
+                <path d="M0 245C93 216 179 235 251 254C337 276 424 223 520 235V290H0Z" fill="#9dc9aa"/>
+                <g class="garden-plant garden-plant-1">
+                  <path d="M124 238V178" stroke="#477d5e" stroke-width="7" stroke-linecap="round"/>
+                  <ellipse cx="104" cy="198" rx="27" ry="13" transform="rotate(25 104 198)" fill="#6ca57f"/>
+                  <ellipse cx="145" cy="191" rx="28" ry="13" transform="rotate(-28 145 191)" fill="#79b68b"/>
+                  <circle cx="124" cy="165" r="18" fill="#e5a8a0"/>
+                  <circle cx="108" cy="167" r="13" fill="#f2c3b5"/>
+                  <circle cx="140" cy="167" r="13" fill="#f2c3b5"/>
+                </g>
+                <g class="garden-plant garden-plant-2">
+                  <path d="M258 252V193" stroke="#477d5e" stroke-width="7" stroke-linecap="round"/>
+                  <ellipse cx="238" cy="217" rx="25" ry="12" transform="rotate(24 238 217)" fill="#6ca57f"/>
+                  <ellipse cx="278" cy="211" rx="25" ry="12" transform="rotate(-23 278 211)" fill="#79b68b"/>
+                  <circle cx="258" cy="182" r="16" fill="#e8c96f"/>
+                </g>
+                <g class="garden-plant garden-plant-3">
+                  <path d="M382 245V180" stroke="#477d5e" stroke-width="7" stroke-linecap="round"/>
+                  <ellipse cx="361" cy="205" rx="25" ry="12" transform="rotate(26 361 205)" fill="#6ca57f"/>
+                  <ellipse cx="404" cy="198" rx="25" ry="12" transform="rotate(-26 404 198)" fill="#79b68b"/>
+                  <circle cx="382" cy="167" r="17" fill="#b7a9da"/>
+                </g>
+                <g class="garden-sparkles" fill="#fff" opacity=".92">
+                  <circle cx="85" cy="78" r="4"/><circle cx="186" cy="56" r="3"/><circle cx="306" cy="89" r="4"/>
+                </g>
+              </svg>
+            </div>
+
+            <div class="garden-footer">
+              <div>
+                <strong id="gardenMessage">Mỗi buổi chơi sẽ làm khu vườn thay đổi một chút.</strong>
+                <small>Không cần chơi mỗi ngày. Khu vườn không bao giờ mất đi.</small>
+              </div>
+              <div class="garden-dots" id="gardenDots" aria-hidden="true"></div>
+            </div>
+          </aside>
         </div>
-        <div class="section-description">
-          Trò chơi giáo dục trực quan cho trẻ em đặc biệt. Rèn luyện khả năng nhận biết, ghi nhớ và tập trung.
+
+        <div class="preference-strip" aria-label="Thiết lập hiện tại">
+          <span class="status-chip" id="visualModeChip"><span aria-hidden="true">◐</span> Giao diện: dịu</span>
+          <span class="status-chip" id="soundChip"><span aria-hidden="true">♪</span> Âm thanh: tắt</span>
+          <span class="status-chip" id="motionChip"><span aria-hidden="true">≈</span> Chuyển động: giảm</span>
+          <button class="inline-link" type="button" data-route="settings">Thay đổi</button>
         </div>
-        <button class="btn-pill start-btn" id="startGameBtn">Bắt đầu chơi</button>
+
+        <section class="recommendation-panel" aria-labelledby="recommendationTitle">
+          <div class="recommendation-icon" aria-hidden="true">✦</div>
+          <div>
+            <p class="eyebrow">Gợi ý cho lần này</p>
+            <h2 id="recommendationTitle">Bắt đầu theo nhịp quen thuộc</h2>
+            <p id="recommendationText">Gợi ý được tạo từ những trò đã chơi và cách hỗ trợ đã dùng — không từ chẩn đoán.</p>
+          </div>
+          <button class="secondary-button" type="button" id="recommendationBtn" data-activity="match">Thử gợi ý</button>
+        </section>
+
+        <section class="journey-panel" aria-labelledby="journeyTitle">
+          <div class="journey-heading">
+            <div>
+              <p class="eyebrow">Hôm nay</p>
+              <h2 id="journeyTitle">Ba chặng, luôn biết mình đang ở đâu</h2>
+            </div>
+            <p>Giữa các chặng, trò chơi dừng lại để bạn tự chọn lúc tiếp tục.</p>
+          </div>
+          <ol class="journey-steps">
+            <li><span class="step-number">1</span><div><strong>Khởi động</strong><small>Làm quen với cách chơi</small></div></li>
+            <li><span class="step-number">2</span><div><strong>Khám phá</strong><small>Một chút thay đổi</small></div></li>
+            <li><span class="step-number">3</span><div><strong>Tự tin</strong><small>Kết thúc theo nhịp của bạn</small></div></li>
+          </ol>
+        </section>
+
+        <section class="section-block" aria-labelledby="activitiesTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Chọn một thế giới</p>
+              <h2 id="activitiesTitle">Mỗi trò chơi luyện một cách quan sát khác nhau</h2>
+            </div>
+            <p>Độ khó thay đổi nhẹ nhàng giữa các chặng và có thể giảm ngay khi bạn muốn.</p>
+          </div>
+
+          <div class="activity-grid">
+            <button class="activity-card activity-card--memory" type="button" data-activity="match">
+              <span class="activity-art" aria-hidden="true">
+                <span class="mini-card mini-card-a">◆</span><span class="mini-card mini-card-b">◆</span>
+              </span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Ghi nhớ</span>
+                <strong>Vườn ghép đôi</strong>
+                <span>Tìm hai thẻ giống nhau. Có thể xem trước hoặc xin gợi ý.</span>
+                <small><span>3 chặng</span><span>•</span><span>2–5 cặp</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="activity-card activity-card--focus" type="button" data-activity="focus">
+              <span class="activity-art" aria-hidden="true">
+                <span class="target-ring"><span>★</span></span>
+              </span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Chú ý thị giác</span>
+                <strong>Săn dấu hiệu</strong>
+                <span>Tìm các biểu tượng giống mẫu giữa một khu vườn nhỏ.</span>
+                <small><span>3 chặng</span><span>•</span><span>không trừ điểm</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="activity-card activity-card--sequence" type="button" data-activity="sequence">
+              <span class="activity-art sequence-art" aria-hidden="true">
+                <span>1</span><i></i><span>2</span><i></i><span>3</span>
+              </span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Trình tự</span>
+                <strong>Đường đi nhỏ</strong>
+                <span>Chọn từng bước theo thứ tự. Phần đúng luôn được giữ lại.</span>
+                <small><span>3 chặng</span><span>•</span><span>3–5 bước</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="activity-card activity-card--pattern" type="button" data-activity="pattern">
+              <span class="activity-art pattern-art" aria-hidden="true">
+                <span>●</span><span>▲</span><span>●</span><span class="pattern-missing">?</span>
+              </span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Quy luật</span>
+                <strong>Con đường hoa văn</strong>
+                <span>Nhìn chuỗi hình và chọn mảnh còn thiếu, không cần làm thật nhanh.</span>
+                <small><span>3 chặng</span><span>•</span><span>quy luật thay đổi</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="activity-card activity-card--classify" type="button" data-activity="classify">
+              <span class="activity-art classify-art" aria-hidden="true">
+                <span>🍃</span><i>→</i><span>🌿</span>
+              </span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Phân loại</span>
+                <strong>Ngôi nhà của đồ vật</strong>
+                <span>Chọn nhóm phù hợp bằng nút lớn, không cần kéo thả.</span>
+                <small><span>3 chặng</span><span>•</span><span>giữ phần đã đúng</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+
+            <button class="activity-card activity-card--reflect activity-card--wide" type="button" data-activity="checkin">
+              <span class="activity-art reflect-art" aria-hidden="true"><span>♡</span></span>
+              <span class="activity-copy">
+                <span class="activity-kicker">Tự nhận biết</span>
+                <strong>Mình đang thế nào?</strong>
+                <span>Chọn cảm xúc hoặc nhu cầu gần nhất lúc này. Không chấm điểm và không lưu lựa chọn.</span>
+                <small><span>riêng tư</span><span>•</span><span>không có đáp án sai</span></small>
+              </span>
+              <span class="activity-go" aria-hidden="true">↗</span>
+            </button>
+          </div>
+        </section>
+
+        <section class="custom-packs-home" id="customPacksSection" aria-labelledby="customPacksTitle" hidden>
+          <div class="section-heading section-heading--compact">
+            <div>
+              <p class="eyebrow">Nội dung của gia đình</p>
+              <h2 id="customPacksTitle">Chơi với những thứ quen thuộc</h2>
+            </div>
+            <button class="inline-link" type="button" data-route="packs">Quản lý gói nội dung</button>
+          </div>
+          <div class="custom-pack-grid" id="customPacksList"></div>
+        </section>
+
+        <section class="trust-panel" aria-labelledby="trustTitle">
+          <div class="trust-icon" aria-hidden="true">⌁</div>
+          <div>
+            <p class="eyebrow">Riêng tư theo mặc định</p>
+            <h2 id="trustTitle">Dữ liệu chơi ở lại trên thiết bị</h2>
+          </div>
+          <p>
+            Không quảng cáo, không analytics, không tài khoản và không theo dõi bên thứ ba.
+            Cảm xúc ở phần check-in không được lưu. Tiến trình cục bộ có thể xuất hoặc xóa bất cứ lúc nào.
+          </p>
+        </section>
       </section>
 
-      <!-- Level Selection Screen -->
-      <section class="screen level-selection" id="levelScreen">
-        <h2 class="page-title">Chọn<br>cấp độ</h2>
-        <div class="subtitle">Mục tiêu phát triển kỹ năng</div>
-        <div class="level-cards-grid">
-          <button class="level-card colors-card" data-level="0" aria-label="Cấp 1: Màu sắc">
-            <span class="card-emoji">🎨</span>
-            <span class="card-title">Màu sắc</span>
-            <span class="card-pairs">2 cặp</span>
-          </button>
-          <button class="level-card shapes-card" data-level="1" aria-label="Cấp 2: Hình học">
-            <span class="card-emoji">🔷</span>
-            <span class="card-title">Hình học</span>
-            <span class="card-pairs">4 cặp</span>
-          </button>
-          <button class="level-card numbers-card" data-level="2" aria-label="Cấp 3: Con số">
-            <span class="card-emoji">🔢</span>
-            <span class="card-title">Con số</span>
-            <span class="card-pairs">5 cặp</span>
-          </button>
-          <button class="level-card animals-card" data-level="3" aria-label="Cấp 4: Con vật">
-            <span class="card-emoji">🐾</span>
-            <span class="card-title">Con vật</span>
-            <span class="card-pairs">6 cặp</span>
-          </button>
-          <button class="level-card emotions-card" data-level="4" aria-label="Cấp 5: Cảm xúc">
-            <span class="card-emoji">😄</span>
-            <span class="card-title">Cảm xúc</span>
-            <span class="card-pairs">7 cặp</span>
-          </button>
-        </div>
-      </section>
+      <section class="screen play-screen" id="playScreen" data-screen="play" aria-labelledby="gameTitle">
+        <div class="play-shell">
+          <div class="play-topline">
+            <button class="quiet-button quiet-button--back" type="button" id="leaveActivityBtn">← Kết thúc</button>
+            <div class="mission-progress" id="roundDots" aria-label="Tiến trình chặng"></div>
+            <div class="play-top-actions">
+              <button class="communication-button" type="button" id="communicationBtn"><span aria-hidden="true">💬</span> Tôi cần…</button>
+              <button class="quiet-button" type="button" id="pauseBtn"><span aria-hidden="true">Ⅱ</span> Tạm nghỉ</button>
+            </div>
+          </div>
 
-      <!-- Game Board Screen -->
-      <section class="screen game-screen" id="gameScreen">
-        <div class="game-header">
-          <h2 class="game-title" id="gameLevelTitle">Cấp độ</h2>
-          <div class="round-info">
-            <span id="roundCounter">Ván 1</span> / <span id="roundTotal">3</span>
+          <header class="game-header">
+            <div class="game-heading-row">
+              <div>
+                <p class="eyebrow" id="gameSkill">Hoạt động</p>
+                <h1 id="gameTitle">Vườn ghép đôi</h1>
+              </div>
+              <span class="difficulty-chip" id="difficultyChip">Nhịp nhẹ</span>
+            </div>
+            <div class="instruction-card">
+              <span class="instruction-icon" aria-hidden="true">✦</span>
+              <p id="gameInstruction">Tìm hai thẻ giống nhau.</p>
+              <button class="read-button" id="readInstructionBtn" type="button" aria-label="Đọc hướng dẫn">🔊 <span>Đọc</span></button>
+            </div>
+          </header>
+
+          <div class="game-stage" id="gameArea" aria-live="polite"></div>
+
+          <div class="support-dock" aria-label="Trợ giúp trong hoạt động">
+            <div class="support-message">
+              <span class="support-orb" aria-hidden="true">•</span>
+              <p id="supportText">Bạn có thể xin gợi ý bất cứ lúc nào.</p>
+            </div>
+            <div class="support-actions">
+              <button class="soft-button" id="previewBtn" type="button">Xem trước</button>
+              <button class="soft-button" id="easierBtn" type="button">Nhẹ hơn</button>
+              <button class="primary-button primary-button--small" id="hintBtn" type="button">Gợi ý</button>
+              <button class="quiet-button" id="skipRoundBtn" type="button">Bỏ qua chặng</button>
+            </div>
           </div>
         </div>
-        <div class="game-grid" id="gameGrid"></div>
-        <div class="game-actions">
-          <button class="btn-pill back-btn" id="backToLevelsBtn">Quay lại</button>
+      </section>
+
+      <section class="screen" id="progressScreen" data-screen="progress" aria-labelledby="progressTitle">
+        <div class="page-narrow">
+          <div class="page-heading-row">
+            <div>
+              <p class="eyebrow">Góc dành cho người đồng hành</p>
+              <h1 id="progressTitle">Tiến trình trên thiết bị này</h1>
+              <p class="page-lead">
+                Các chỉ số mô tả tương tác với trò chơi, không phải điểm năng lực và không dùng để chẩn đoán.
+              </p>
+            </div>
+            <div class="local-badge"><span aria-hidden="true">⌂</span><strong>Chỉ lưu cục bộ</strong><small>Không gửi lên máy chủ</small></div>
+          </div>
+
+          <div class="metric-grid" id="metricGrid"></div>
+
+          <section class="progress-section" aria-labelledby="skillProgressTitle">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <p class="eyebrow">Điều chỉnh thích ứng</p>
+                <h2 id="skillProgressTitle">Trò chơi đang hỗ trợ như thế nào?</h2>
+              </div>
+              <p>Chỉ thay đổi lượng thông tin hoặc độ dài nhiệm vụ. Người chơi luôn có thể chọn “Nhẹ hơn”.</p>
+            </div>
+            <div id="skillProgressList" class="skill-progress-list"></div>
+          </section>
+
+          <section class="progress-section" aria-labelledby="recentTitle">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <p class="eyebrow">Gần đây</p>
+                <h2 id="recentTitle">Nhịp khám phá</h2>
+              </div>
+              <p>Không có streak. Khoảng nghỉ dài không làm mất thành quả.</p>
+            </div>
+            <div class="recent-list" id="recentList"></div>
+          </section>
+
+          <section class="progress-section" aria-labelledby="dataTitle">
+            <div class="section-heading section-heading--compact">
+              <div>
+                <p class="eyebrow">Quyền kiểm soát dữ liệu</p>
+                <h2 id="dataTitle">Xuất hoặc xóa</h2>
+              </div>
+            </div>
+            <div class="button-row">
+              <button class="secondary-button" type="button" id="exportDataBtn">Xuất JSON</button>
+              <button class="danger-button" type="button" id="resetDataBtn">Xóa tiến trình</button>
+            </div>
+          </section>
         </div>
       </section>
 
-      <!-- Victory Screen -->
-      <section class="screen victory-screen" id="victoryScreen">
-        <div class="celebration">
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
-          <div class="confetti"></div>
+      <section class="screen" id="packsScreen" data-screen="packs" aria-labelledby="packsTitle">
+        <div class="page-narrow">
+          <div class="page-heading-row">
+            <div>
+              <p class="eyebrow">Xưởng nội dung cục bộ</p>
+              <h1 id="packsTitle">Biến điều quen thuộc thành trò chơi</h1>
+              <p class="page-lead">Tạo gói bằng biểu tượng và từ quen thuộc với trẻ. Mọi gói chỉ nằm trên trình duyệt này trừ khi bạn chủ động xuất tệp.</p>
+            </div>
+            <div class="local-badge"><span aria-hidden="true">▦</span><strong>Không cần tài khoản</strong><small>Không tải lên đám mây</small></div>
+          </div>
+
+          <section class="pack-builder" aria-labelledby="packBuilderTitle">
+            <div class="section-heading section-heading--compact">
+              <div><p class="eyebrow">Tạo gói</p><h2 id="packBuilderTitle">Một gói, một chủ đề quen thuộc</h2></div>
+              <p>Ví dụ: người thân, đồ dùng lớp học, động vật yêu thích hoặc từ vựng đang học.</p>
+            </div>
+            <form id="packForm" class="pack-form">
+              <label><span>Tên gói</span><input id="packTitleInput" maxlength="48" required placeholder="Ví dụ: Đồ vật ở nhà"></label>
+              <label><span>Kiểu trò chơi</span><select id="packTypeInput"><option value="match">Ghép đôi</option><option value="focus">Tìm mục tiêu</option></select></label>
+              <label class="pack-items-field"><span>Các mục — mỗi dòng: <b>biểu tượng | tên</b></span><textarea id="packItemsInput" rows="7" required placeholder="🥄 | Cái thìa
+🪥 | Bàn chải
+🧦 | Đôi tất
+📘 | Quyển sách"></textarea><small>Từ 4 đến 12 mục. Dùng emoji, chữ cái, số hoặc ký hiệu đơn giản.</small></label>
+              <button class="primary-button" type="submit">Lưu gói trên thiết bị</button>
+            </form>
+          </section>
+
+          <section class="progress-section" aria-labelledby="packLibraryTitle">
+            <div class="section-heading section-heading--compact">
+              <div><p class="eyebrow">Thư viện</p><h2 id="packLibraryTitle">Gói đã lưu</h2></div>
+              <div class="button-row pack-library-actions"><button class="secondary-button" type="button" id="importPacksBtn">Nhập tệp</button><button class="secondary-button" type="button" id="exportPacksBtn">Xuất tất cả</button><input id="importPacksInput" type="file" accept="application/json,.json" hidden></div>
+            </div>
+            <div id="packLibraryList" class="pack-library-list"></div>
+          </section>
+
+          <aside class="pack-safety-note"><strong>Gợi ý an toàn:</strong> tránh đưa thông tin nhận dạng nhạy cảm vào tên gói. Ảnh và ghi âm chưa được tải lên ở phiên bản này; gói chỉ dùng văn bản/ký hiệu để giữ dữ liệu nhỏ và dễ kiểm soát.</aside>
         </div>
-        <h2 class="victory-title dancing-emoji">🎉 Hoàn thành! 🎉</h2>
-        <div class="victory-emojis">
-          <span class="emoji-bounce">🌟</span>
-          <span class="emoji-bounce" style="animation-delay: 0.2s;">🎈</span>
-          <span class="emoji-bounce" style="animation-delay: 0.4s;">🎊</span>
+      </section>
+
+      <section class="screen" id="settingsScreen" data-screen="settings" aria-labelledby="settingsTitle">
+        <div class="page-narrow">
+          <div class="page-heading-row">
+            <div>
+              <p class="eyebrow">Trung tâm dễ tiếp cận</p>
+              <h1 id="settingsTitle">Tạo một môi trường dễ chịu hơn</h1>
+              <p class="page-lead">
+                Không cần chọn nhãn chẩn đoán. Chỉ chọn cách hiển thị, âm thanh và nhịp chơi phù hợp lúc này.
+              </p>
+            </div>
+            <div class="settings-preview" aria-hidden="true"><span>Aa</span><span>◐</span><span>Ⅱ</span></div>
+          </div>
+
+          <div class="preset-row" aria-label="Cài đặt nhanh">
+            <button class="preset-card" type="button" data-preset="calm"><strong>Dịu</strong><span>ít chuyển động • âm thanh tắt • nút lớn</span></button>
+            <button class="preset-card" type="button" data-preset="balanced"><strong>Cân bằng</strong><span>nhịp vừa • nhãn rõ • hiệu ứng nhẹ</span></button>
+            <button class="preset-card" type="button" data-preset="focus"><strong>Tập trung</strong><span>tương phản cao • ít trang trí • chữ lớn</span></button>
+          </div>
+
+          <div class="settings-grid">
+            <fieldset class="settings-card">
+              <legend>Giao diện</legend>
+              <label class="choice-row">
+                <input type="radio" name="visualMode" value="calm">
+                <span><strong>Dịu</strong><small>Màu mềm, nền ổn định.</small></span>
+              </label>
+              <label class="choice-row">
+                <input type="radio" name="visualMode" value="bright">
+                <span><strong>Tươi</strong><small>Nhiều màu hơn nhưng không nhấp nháy.</small></span>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="highContrastSetting">
+                <span><strong>Tương phản cao</strong><small>Tăng ranh giới và độ nổi của nút.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="settings-card">
+              <legend>Chuyển động & âm thanh</legend>
+              <label class="toggle-row">
+                <input type="checkbox" id="reduceMotionSetting">
+                <span><strong>Giảm chuyển động</strong><small>Tắt hiệu ứng không cần thiết.</small></span>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="soundSetting">
+                <span><strong>Âm thanh nhẹ</strong><small>Chỉ bổ sung cảm giác, không mang thông tin bắt buộc.</small></span>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="narrationSetting">
+                <span><strong>Tự đọc hướng dẫn</strong><small>Dùng giọng đọc có sẵn trên thiết bị.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="settings-card">
+              <legend>Chữ & nút</legend>
+              <label class="select-row" for="textSizeSetting">
+                <span><strong>Cỡ chữ</strong><small>Chọn kích thước dễ đọc.</small></span>
+                <select id="textSizeSetting">
+                  <option value="1">Tiêu chuẩn</option>
+                  <option value="1.15">Lớn</option>
+                  <option value="1.3">Rất lớn</option>
+                </select>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="largeTargetsSetting">
+                <span><strong>Nút lớn</strong><small>Tăng diện tích chạm.</small></span>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="labelsSetting">
+                <span><strong>Luôn hiện chữ</strong><small>Không phụ thuộc vào emoji hoặc màu sắc.</small></span>
+              </label>
+            </fieldset>
+
+            <fieldset class="settings-card">
+              <legend>Nhịp hỗ trợ</legend>
+              <label class="select-row" for="paceSetting">
+                <span><strong>Nhịp xử lý</strong><small>Ảnh hưởng thời gian xem thẻ và chuyển chặng.</small></span>
+                <select id="paceSetting">
+                  <option value="gentle">Chậm rãi</option>
+                  <option value="steady">Vừa phải</option>
+                </select>
+              </label>
+              <label class="toggle-row">
+                <input type="checkbox" id="autoHintSetting">
+                <span><strong>Gợi ý chủ động</strong><small>Đề nghị trợ giúp sau vài lần thử, không tự làm thay.</small></span>
+              </label>
+              <label class="select-row" for="breakSetting">
+                <span><strong>Nhắc nghỉ</strong><small>Chỉ gợi ý, không khóa hoạt động.</small></span>
+                <select id="breakSetting">
+                  <option value="3">Sau 3 phút</option>
+                  <option value="5">Sau 5 phút</option>
+                  <option value="8">Sau 8 phút</option>
+                  <option value="0">Không nhắc</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="settings-card settings-card--access">
+              <legend>Điều khiển thay thế</legend>
+              <label class="toggle-row">
+                <input type="checkbox" id="switchScanningSetting">
+                <span><strong>Quét bằng một nút</strong><small>Một khung sáng lần lượt đi qua các lựa chọn; Space/Enter kích hoạt mục đang sáng.</small></span>
+              </label>
+              <label class="select-row" for="scanSpeedSetting">
+                <span><strong>Tốc độ quét</strong><small>Có thể dùng quét tự động hoặc tự chuyển bằng phím mũi tên.</small></span>
+                <select id="scanSpeedSetting">
+                  <option value="2500">Rất chậm · 2,5 giây</option>
+                  <option value="1800">Chậm · 1,8 giây</option>
+                  <option value="1200">Vừa · 1,2 giây</option>
+                  <option value="0">Thủ công bằng ← →</option>
+                </select>
+              </label>
+              <p class="setting-note">Quét chỉ chạy trong màn chơi và bảng giao tiếp. Chuột, cảm ứng và bàn phím vẫn hoạt động bình thường.</p>
+            </fieldset>
+          </div>
+
+          <div class="settings-actions">
+            <button class="primary-button" type="button" id="saveSettingsBtn">Lưu cách chơi</button>
+            <button class="quiet-button" type="button" id="restoreDefaultsBtn">Khôi phục mặc định dễ chịu</button>
+          </div>
         </div>
-        <div class="victory-message" id="victoryMessage">Bạn đã hoàn thành ván 1!</div>
-        <div class="victory-actions">
-          <button class="btn-pill next-round-btn" id="nextRoundBtn">Ván tiếp theo</button>
-          <button class="btn-pill back-levels-btn" id="backToLevelsBtnVictory">Quay lại chọn cấp</button>
+      </section>
+
+      <section class="screen" id="completeScreen" data-screen="complete" aria-labelledby="completeTitle">
+        <div class="complete-card">
+          <div class="complete-art" aria-hidden="true">
+            <span class="complete-sprout">❧</span>
+            <span class="complete-ring"></span>
+          </div>
+          <p class="eyebrow">Chuyến khám phá hoàn thành</p>
+          <h1 id="completeTitle">Bạn đã đi qua cả 3 chặng.</h1>
+          <p id="completeMessage">Cảm ơn vì đã thử theo cách của mình.</p>
+          <div class="session-reflection" id="sessionReflection"></div>
+          <div class="complete-actions">
+            <button class="primary-button" type="button" id="playAgainBtn">Khám phá lại</button>
+            <button class="secondary-button" type="button" data-route="home">Về khu vườn</button>
+          </div>
         </div>
       </section>
     </main>
-
-    <!-- Right Footer Blocks -->
-    <footer class="sidebar-footer">
-      <div class="footer-block">
-        <div class="footer-title">Về trò chơi</div>
-        <div class="footer-text">Giáo dục & Phát triển</div>
-      </div>
-      <div class="footer-block">
-        <div class="footer-title">Hỗ trợ</div>
-        <div class="footer-text">Cho trẻ em đặc biệt</div>
-      </div>
-    </footer>
   </div>
 
-  <script src="app.js"></script>
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal-backdrop" id="pauseModal" hidden>
+    <section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="pauseTitle">
+      <div class="breathing-visual" aria-hidden="true"><span></span></div>
+      <p class="eyebrow">Khoảng nghỉ</p>
+      <h2 id="pauseTitle">Mình có thể dừng một chút.</h2>
+      <p>Không có đồng hồ đếm ngược. Khi sẵn sàng, bạn tự chọn tiếp tục.</p>
+      <div class="modal-actions">
+        <button class="primary-button" type="button" id="resumeBtn">Tiếp tục</button>
+        <button class="secondary-button" type="button" id="finishFromPauseBtn">Kết thúc buổi chơi</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop communication-backdrop" id="communicationModal" hidden>
+    <section class="modal-card communication-card" role="dialog" aria-modal="true" aria-labelledby="communicationTitle">
+      <div class="communication-heading"><div><p class="eyebrow">Bảng giao tiếp nhanh</p><h2 id="communicationTitle">Tôi cần…</h2></div><button class="quiet-button" type="button" id="closeCommunicationBtn" aria-label="Đóng bảng giao tiếp">Đóng</button></div>
+      <p class="communication-intro">Chạm hoặc quét tới một lựa chọn. Lựa chọn ở đây không được lưu vào tiến trình.</p>
+      <div class="communication-grid">
+        <button type="button" data-comm="pause"><span aria-hidden="true">Ⅱ</span><strong>Nghỉ một chút</strong></button>
+        <button type="button" data-comm="help"><span aria-hidden="true">✦</span><strong>Giúp tôi</strong></button>
+        <button type="button" data-comm="easier"><span aria-hidden="true">−</span><strong>Ít hơn</strong></button>
+        <button type="button" data-comm="quiet"><span aria-hidden="true">♪</span><strong>Yên hơn</strong></button>
+        <button type="button" data-comm="explain"><span aria-hidden="true">?</span><strong>Nói lại</strong></button>
+        <button type="button" data-comm="finish"><span aria-hidden="true">✓</span><strong>Tôi xong rồi</strong></button>
+      </div>
+    </section>
+  </div>
+
+  <noscript><div class="noscript-message">Trò chơi cần JavaScript để hoạt động.</div></noscript>
+  <script src="app.js" defer></script>
 </body>
 </html>
