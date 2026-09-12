@@ -39,7 +39,7 @@
     match: {
       title: "Vườn ghép đôi",
       skill: "Ghi nhớ • phân biệt hình ảnh",
-      instruction: "Tìm hai thẻ giống nhau. Bạn có thể xem trước hoặc xin gợi ý bất cứ lúc nào.",
+      instruction: "Tìm hai thẻ giống nhau. Có thể xem trước hoặc xin gợi ý.",
       icon: "◆",
       intro: [
         "Bắt đầu với một khu vườn nhỏ.",
@@ -61,7 +61,7 @@
     sequence: {
       title: "Đường đi nhỏ",
       skill: "Trình tự • chức năng điều hành",
-      instruction: "Chọn từng bước theo đúng thứ tự. Phần đã làm đúng sẽ luôn được giữ lại.",
+      instruction: "Chọn từng bước theo thứ tự. Phần đúng luôn được giữ lại.",
       icon: "123",
       intro: [
         "Đi từng bước, không cần vội.",
@@ -72,7 +72,7 @@
     pattern: {
       title: "Con đường hoa văn",
       skill: "Nhận biết quy luật • suy luận",
-      instruction: "Nhìn chuỗi hình và chọn mảnh còn thiếu. Không có giới hạn thời gian.",
+      instruction: "Nhìn chuỗi hình và chọn mảnh còn thiếu. Không cần làm nhanh.",
       icon: "◈",
       intro: [
         "Quan sát nhịp lặp của các hình.",
@@ -83,7 +83,7 @@
     classify: {
       title: "Ngôi nhà của đồ vật",
       skill: "Phân loại • khái niệm",
-      instruction: "Nhìn một mục rồi chọn nhóm phù hợp. Không cần kéo thả và phần đúng luôn được giữ lại.",
+      instruction: "Nhìn một mục rồi chọn nhóm phù hợp. Không cần kéo thả.",
       icon: "▦",
       intro: [
         "Mỗi đồ vật chỉ cần tìm một ngôi nhà phù hợp.",
@@ -569,7 +569,7 @@
     renderMissionProgress();
     els.difficultyChip.textContent = difficultyLabel(session.roundDifficulty);
     setPlaySupports({ hint: true, preview: session.type === "match", easier: session.roundDifficulty > 0, skip: true });
-    els.supportText.textContent = "Bạn có thể xin gợi ý, chơi nhẹ hơn hoặc bỏ qua chặng này.";
+    els.supportText.textContent = "Cần giúp? Bạn có thể xin gợi ý, chọn nhẹ hơn hoặc bỏ qua chặng.";
 
     if (session.type === "match") setupMatchRound();
     if (session.type === "focus") setupFocusRound();

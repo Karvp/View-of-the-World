@@ -773,3 +773,366 @@ html[data-contrast="high"] .is-scan-target { outline-color:#d100ff !important; b
   .pack-library-item { align-items:stretch; flex-direction:column; }
   .pack-item-actions button { flex:1; }
 }
+
+
+/* ==========================================================================
+   v2.3 — Easy-read typography and lower cognitive-load UI
+   ========================================================================== */
+
+:root {
+  --reading-line: 1.65;
+  --reading-measure: 68ch;
+  --reading-small: .9rem;
+}
+
+/* Use familiar, well-supported sans-serif letterforms, including Vietnamese. */
+html {
+  font-size: calc(18px * var(--font-scale));
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, Helvetica, sans-serif;
+  line-height: var(--reading-line);
+  letter-spacing: .006em;
+  font-weight: 400;
+}
+
+/* Avoid compressed letter shapes and overly tight headings. */
+h1, h2, h3,
+.hero-copy h1,
+.world-card h2,
+.game-heading-row h1,
+.page-heading-row h1,
+.complete-card h1,
+.activity-copy strong {
+  letter-spacing: 0;
+  text-wrap: balance;
+}
+
+.hero-copy h1 {
+  max-width: 15ch;
+  font-size: clamp(2.45rem, 4.5vw, 4.1rem);
+  line-height: 1.1;
+  font-weight: 760;
+}
+
+.game-heading-row h1,
+.page-heading-row h1,
+.complete-card h1 {
+  line-height: 1.12;
+}
+
+h2 {
+  line-height: 1.22;
+}
+
+/* Continuous uppercase and wide tracking make word shapes harder to scan. */
+.eyebrow,
+.activity-kicker {
+  text-transform: none;
+  letter-spacing: .01em;
+  font-size: .92rem;
+  font-weight: 760;
+}
+
+.mini-label,
+.brand-copy small,
+.garden-footer small,
+.activity-copy small,
+.round-detail-row span,
+.mission-step,
+.memory-card .label,
+.found-counter,
+.skill-progress-item p,
+.recent-item p,
+.recent-item time,
+.preset-card span,
+.reflection-chip span,
+.custom-pack-card div > span,
+.setting-note {
+  font-size: var(--reading-small);
+  line-height: 1.5;
+}
+
+.brand-copy small {
+  margin-top: 2px;
+}
+
+.brand-copy strong {
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
+.soft-badge,
+.status-chip,
+.difficulty-chip,
+.world-level,
+.support-badge {
+  font-size: .92rem;
+  font-weight: 700;
+}
+
+/* Keep paragraphs at a readable measure and give Vietnamese diacritics room. */
+.hero-lead,
+.page-lead,
+.section-heading > p,
+.journey-heading > p,
+.activity-copy > span,
+.trust-panel p,
+.communication-intro,
+.modal-card > p,
+.game-instruction,
+.support-text,
+.setting-note {
+  max-width: var(--reading-measure);
+  line-height: 1.7;
+}
+
+.hero-lead,
+.page-lead {
+  font-size: 1.08rem;
+}
+
+.activity-copy > span {
+  font-size: 1rem;
+}
+
+.activity-copy strong {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  font-weight: 760;
+}
+
+.activity-copy small {
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Underlines can visually merge letters; use clear button-like links instead. */
+.quiet-button,
+.read-button,
+.inline-link {
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+
+.quiet-button:hover,
+.inline-link:hover,
+.read-button:hover {
+  border-color: var(--border);
+}
+
+/* Larger stable controls and less "floating" decoration in calm mode. */
+.nav-button {
+  min-height: 48px;
+  font-size: .96rem;
+  font-weight: 700;
+}
+
+.primary-button,
+.secondary-button,
+.danger-button,
+.soft-button {
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+html[data-theme="calm"] .ambient {
+  opacity: .11;
+}
+
+html[data-theme="calm"] .hero-copy,
+html[data-theme="calm"] .world-card,
+html[data-theme="calm"] .journey-panel,
+html[data-theme="calm"] .activity-card,
+html[data-theme="calm"] .trust-panel,
+html[data-theme="calm"] .game-stage,
+html[data-theme="calm"] .support-dock,
+html[data-theme="calm"] .progress-section,
+html[data-theme="calm"] .settings-card,
+html[data-theme="calm"] .complete-card,
+html[data-theme="calm"] .metric-card {
+  box-shadow: 0 8px 24px rgba(28, 54, 42, .065);
+}
+
+/* Clear reading rhythm: fewer dense clusters and more whitespace. */
+.section-block {
+  margin-top: 54px;
+}
+
+.activity-grid {
+  gap: 18px;
+}
+
+.activity-card {
+  min-height: 205px;
+  padding: 26px;
+}
+
+.journey-panel,
+.recommendation-panel,
+.trust-panel {
+  line-height: 1.6;
+}
+
+/* Avoid overly small text inside game cards. */
+.memory-card .label {
+  font-weight: 760;
+}
+
+.target-copy small {
+  font-size: .95rem;
+}
+
+.target-copy strong {
+  font-size: 1.18rem;
+}
+
+.sequence-card,
+.classify-choice,
+.pattern-choice {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/* Settings are adult-facing but should remain easy to scan. */
+.choice-row strong,
+.toggle-row strong,
+.select-row strong {
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.choice-row small,
+.toggle-row small,
+.select-row small {
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+/* Mobile: prioritise large readable text and remove low-value visual density. */
+@media (max-width: 580px) {
+  html {
+    font-size: calc(17px * var(--font-scale));
+  }
+
+  .main-content {
+    width: min(100% - 24px, var(--content-width));
+  }
+
+  .screen {
+    padding-top: 28px;
+  }
+
+  .hero-copy {
+    min-height: 0;
+    padding: 28px 24px 30px;
+    border-radius: 26px;
+  }
+
+  .hero-copy h1 {
+    max-width: 14ch;
+    font-size: clamp(2.15rem, 10.6vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .hero-lead {
+    margin-top: 18px;
+    font-size: 1rem;
+    line-height: 1.68;
+  }
+
+  .soft-badge {
+    margin-bottom: 18px;
+    font-size: .9rem;
+    line-height: 1.4;
+  }
+
+  .session-facts {
+    gap: 10px 14px;
+    font-size: .92rem;
+  }
+
+  .world-card {
+    padding: 18px;
+    border-radius: 26px;
+  }
+
+  .preference-strip {
+    gap: 7px;
+    margin-bottom: 28px;
+  }
+
+  .status-chip {
+    font-size: .88rem;
+  }
+
+  .recommendation-panel,
+  .journey-panel,
+  .trust-panel {
+    padding: 22px 20px;
+  }
+
+  .journey-heading {
+    gap: 10px;
+  }
+
+  .journey-steps {
+    gap: 10px;
+  }
+
+  .activity-card {
+    min-height: 0;
+    padding: 20px 18px;
+    gap: 15px;
+  }
+
+  .activity-copy strong {
+    font-size: 1.2rem;
+  }
+
+  .activity-copy > span {
+    font-size: .98rem;
+    line-height: 1.58;
+  }
+
+  .activity-copy small {
+    font-size: .88rem;
+  }
+
+  .activity-kicker,
+  .eyebrow {
+    font-size: .86rem;
+  }
+
+  .game-heading-row h1 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .game-instruction {
+    font-size: 1rem;
+  }
+
+  .support-dock {
+    padding: 14px;
+  }
+
+  /* Keep secondary metadata from competing with the main task. */
+  .garden-footer small,
+  .activity-copy small {
+    color: color-mix(in srgb, var(--muted) 92%, var(--text));
+  }
+}
+
+/* Respect users who enlarge text aggressively: allow wrapping instead of clipping. */
+@media (max-width: 760px) {
+  .nav-button,
+  .primary-button,
+  .secondary-button,
+  .soft-button,
+  .quiet-button,
+  .read-button {
+    white-space: normal;
+  }
+}

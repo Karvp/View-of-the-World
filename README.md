@@ -148,3 +148,21 @@ Software features alone do not establish effectiveness. The next stages should i
 6. a preregistered pilot if the team eventually wants to make learning/therapeutic outcome claims.
 
 See `docs/RESEARCH_AND_PRODUCT_VISION.md`.
+
+
+## v2.3 readable UI
+
+v2.3 changes the visual defaults for children who may have reading, attention,
+language-processing, or sensory-access needs:
+
+- 18 px easy-read base text on desktop and 17 px on small screens;
+- familiar sans-serif system fonts with strong Vietnamese support;
+- no compressed/negative letter spacing in headings;
+- no continuous uppercase labels;
+- larger secondary text and labels;
+- longer line-height and controlled paragraph width;
+- shorter, more concrete child-facing instructions;
+- reduced decorative intensity in Calm mode;
+- larger, more stable navigation and action controls.
+
+No special "dyslexia font" is forced. Users can still enlarge text in Accessibility settings.
