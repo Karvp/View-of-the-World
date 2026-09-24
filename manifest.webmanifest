@@ -1,0 +1,19 @@
+{
+  "name": "Góc nhìn quanh em",
+  "short_name": "Góc nhìn",
+  "description": "Ứng dụng giao tiếp và học qua chơi bằng hình, ưu tiên predictability và hỗ trợ cá nhân cho trẻ tự kỷ có khuyết tật trí tuệ.",
+  "lang": "vi",
+  "start_url": "./index.php",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6f2",
+  "theme_color": "#f3f6f2",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

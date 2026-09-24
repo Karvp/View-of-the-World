@@ -1,0 +1,243 @@
+
+/* ==========================================================================
+   v3.2 — QA closure / final visual containment
+   ========================================================================== */
+
+/* Child play must never expose adult navigation, even if the adult area was
+   recently unlocked. Keep only the compact lock/menu entry. */
+html[data-screen="play"] .adult-nav,
+html[data-screen="home"] .adult-nav,
+html[data-screen="complete"] .adult-nav {
+  display: none !important;
+}
+
+html[data-screen="play"] .adult-gate-entry,
+html[data-screen="home"][data-adult-unlocked="true"] .adult-gate-entry {
+  display: grid !important;
+}
+
+/* Adult pages do not need child-scale headlines. More useful information is
+   visible above the fold without weakening the hierarchy. */
+#progressScreen .page-heading-row h1,
+#guideScreen .page-heading-row h1,
+#packsScreen .page-heading-row h1,
+#settingsScreen .page-heading-row h1 {
+  max-width: 18ch;
+  font-size: clamp(2.45rem, 4.4vw, 3.35rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+
+#progressScreen .page-heading-row,
+#guideScreen .page-heading-row,
+#packsScreen .page-heading-row,
+#settingsScreen .page-heading-row {
+  align-items: end;
+  gap: 28px;
+}
+
+#progressScreen .page-lead,
+#guideScreen .page-lead,
+#packsScreen .page-lead,
+#settingsScreen .page-lead {
+  max-width: 64ch;
+  font-size: 1rem;
+}
+
+/* Compress the WonderTree-inspired introduction so the actual activity catalog
+   appears earlier without deleting the context the user asked for. */
+#guideScreen .who-support-panel {
+  padding: 22px 24px;
+}
+
+#guideScreen .support-need-grid {
+  gap: 10px;
+  margin-top: 16px;
+}
+
+#guideScreen .support-need-grid article {
+  min-height: 0;
+  padding: 15px 16px;
+  border-radius: 17px;
+}
+
+#guideScreen .support-need-grid article > span {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+}
+
+#guideScreen .support-need-grid strong {
+  font-size: .98rem;
+}
+
+#guideScreen .support-need-grid p {
+  font-size: .86rem;
+  line-height: 1.48;
+}
+
+/* Dialog reading surface: localized section labels are intentionally compact. */
+.wonder-label {
+  letter-spacing: .08em;
+  font-size: .72rem;
+}
+
+.game-info-card {
+  scrollbar-gutter: stable;
+}
+
+.game-info-card .game-info-section {
+  scroll-margin-top: 24px;
+}
+
+/* Desktop toasts should never sit over gameplay/support buttons or content
+   builder controls. Mobile keeps a bottom toast because the screen is narrow. */
+/* Hidden toast must be truly invisible; base v1 styles used transform only. */
+.toast:not(.is-visible) {
+  opacity: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.toast.is-visible {
+  opacity: 1 !important;
+  visibility: visible;
+}
+
+@media (min-width: 621px) {
+  .toast {
+    left: auto !important;
+    right: 22px;
+    top: 88px;
+    bottom: auto !important;
+    transform: translateY(-14px) !important;
+  }
+
+  .toast.is-visible {
+    transform: translateY(0) !important;
+  }
+}
+
+/* Daily Routine uses one internal line-icon family rather than OS emoji. */
+.daily-pictogram-frame {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  margin-inline: auto;
+  border-radius: 19px;
+  background: var(--v28-green-soft);
+  color: var(--v28-green-strong);
+  line-height: 0;
+}
+
+.daily-pictogram {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  stroke-width: 1.8;
+}
+
+.daily-pictogram--fallback {
+  font-family: "Segoe UI Emoji", "Apple Color Emoji", sans-serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.daily-current > span.daily-pictogram-frame,
+.daily-choice > span.daily-pictogram-frame {
+  font-size: inherit;
+}
+
+.daily-current,
+.daily-choice {
+  align-content: center;
+}
+
+.daily-current > .daily-pictogram-frame {
+  margin-bottom: 7px;
+}
+
+.daily-choice > .daily-pictogram-frame {
+  margin-bottom: 8px;
+}
+
+/* Keep transient answer feedback visually above the game but below dialogs. */
+.answer-feedback {
+  z-index: 900;
+}
+
+/* Settings and progress badges should not look like scores. */
+.support-badge {
+  min-width: 112px;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Mobile child home: remove text that requires reading and let the first
+   activities enter the initial scroll much sooner. */
+@media (max-width: 620px) {
+  html[data-audience="preschool"] .child-start-copy > p {
+    display: none;
+  }
+
+  html[data-audience="preschool"] .child-start-card {
+    gap: 18px;
+    padding: 20px 16px;
+  }
+
+  html[data-audience="preschool"] .child-start-copy h1 {
+    max-width: 10ch;
+    font-size: clamp(2.25rem, 11vw, 3rem);
+    line-height: 1.02;
+  }
+
+  html[data-audience="preschool"] .child-state-badge {
+    margin-bottom: 12px;
+  }
+
+  html[data-audience="preschool"] .child-choice {
+    min-height: 98px;
+  }
+
+  html[data-audience="preschool"] .home-routine {
+    padding-top: 14px;
+  }
+
+  html[data-audience="preschool"] .home-routine-step {
+    min-width: 78px;
+    min-height: 40px;
+    padding: 7px 9px;
+  }
+
+  .daily-pictogram-frame {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+  }
+
+  .daily-pictogram {
+    width: 34px;
+    height: 34px;
+  }
+
+  #progressScreen .page-heading-row h1,
+  #guideScreen .page-heading-row h1,
+  #packsScreen .page-heading-row h1,
+  #settingsScreen .page-heading-row h1 {
+    max-width: none;
+    font-size: clamp(2rem, 10vw, 2.65rem);
+  }
+
+  #guideScreen .who-support-panel {
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}

@@ -1,0 +1,21 @@
+# Local tooling and dependencies
+node_modules/
+vendor/
+.env
+.env.*
+*.log
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Test and browser artifacts
+playwright-report/
+test-results/
+coverage/
+*.png
+*.webm
+*.mp4

@@ -1,0 +1,352 @@
+
+/* ==========================================================================
+   v3.1 — Dialog, toast, data-management and CRUD polish
+   ========================================================================== */
+
+body.has-modal {
+  overflow: hidden;
+}
+
+/* ---------- Typed toast ---------- */
+
+.toast {
+  z-index: 1200;
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-width: min(360px, calc(100vw - 28px));
+  max-width: min(560px, calc(100vw - 28px));
+  padding: 10px 14px 10px 10px;
+  border: 1px solid transparent;
+  border-radius: 17px;
+  background: var(--v28-surface);
+  color: var(--v28-ink);
+  box-shadow: 0 14px 40px rgba(24, 42, 32, .14);
+}
+
+.toast-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 11px;
+  line-height: 0;
+}
+
+.toast-icon .ui-icon {
+  width: 19px;
+  height: 19px;
+}
+
+.toast-message {
+  font-size: .92rem;
+  font-weight: 690;
+  line-height: 1.42;
+}
+
+.toast--info {
+  border-color: var(--v28-line);
+}
+.toast--info .toast-icon {
+  background: var(--v28-blue-soft);
+  color: var(--v28-blue);
+}
+
+.toast--success {
+  border-color: #a6ccb4;
+}
+.toast--success .toast-icon {
+  background: #e2f2e8;
+  color: #245c40;
+}
+
+.toast--warning {
+  border-color: #d9c383;
+}
+.toast--warning .toast-icon {
+  background: #fbf1cf;
+  color: #6b5318;
+}
+
+.toast--error {
+  border-color: #d8aaa4;
+}
+.toast--error .toast-icon {
+  background: #f8e8e5;
+  color: #813e38;
+}
+
+/* ---------- Universal confirmation / notice dialog ---------- */
+
+.app-dialog-backdrop {
+  z-index: 1150;
+}
+
+.app-dialog-card {
+  width: min(500px, calc(100vw - 28px));
+  padding: 30px;
+  text-align: left;
+}
+
+.app-dialog-icon {
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  margin-bottom: 18px;
+  border-radius: 19px;
+  background: var(--v28-blue-soft);
+  color: var(--v28-blue);
+  line-height: 0;
+}
+
+.app-dialog-icon .ui-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.app-dialog-backdrop[data-kind="warning"] .app-dialog-icon {
+  background: #fbf1cf;
+  color: #6b5318;
+}
+
+.app-dialog-card[data-kind="danger"] .app-dialog-icon,
+.app-dialog-backdrop[data-kind="danger"] .app-dialog-icon {
+  background: #f8e8e5;
+  color: #813e38;
+}
+
+.app-dialog-backdrop[data-kind="success"] .app-dialog-icon {
+  background: #e2f2e8;
+  color: #245c40;
+}
+
+.app-dialog-card h2 {
+  margin: 3px 0 10px;
+  color: var(--v28-ink);
+  font-size: clamp(1.5rem, 3vw, 1.9rem);
+  line-height: 1.18;
+  letter-spacing: -.02em;
+}
+
+.app-dialog-card > p:not(.eyebrow) {
+  margin: 0;
+  color: var(--v28-muted);
+  line-height: 1.62;
+}
+
+.app-dialog-detail {
+  margin-top: 16px;
+  padding: 13px 15px;
+  border: 1px solid var(--v28-line);
+  border-radius: 15px;
+  background: var(--v28-surface-2);
+  color: var(--v28-muted);
+  font-size: .9rem;
+  line-height: 1.55;
+}
+
+.app-dialog-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.app-dialog-actions > button {
+  min-height: 52px;
+  justify-content: center;
+}
+
+/* ---------- Progress backup / restore ---------- */
+
+.data-management-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.data-management-grid > button {
+  min-height: 50px;
+  justify-content: center;
+}
+
+.data-management-note {
+  max-width: 78ch;
+  margin: 12px 0 0;
+  color: var(--v28-muted);
+  font-size: .88rem;
+  line-height: 1.55;
+}
+
+/* ---------- Content Studio editing ---------- */
+
+.pack-edit-banner {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid #b7d1c0;
+  border-radius: 17px;
+  background: #edf7f0;
+  color: #275b40;
+}
+
+.pack-edit-banner > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border-radius: 13px;
+  background: #fff;
+  line-height: 0;
+}
+
+.pack-edit-banner > span .ui-icon {
+  width: 21px;
+  height: 21px;
+}
+
+.pack-edit-banner strong,
+.pack-edit-banner small {
+  display: block;
+}
+
+.pack-edit-banner strong {
+  font-size: .96rem;
+}
+
+.pack-edit-banner small {
+  margin-top: 2px;
+  color: #50705e;
+  font-size: .83rem;
+}
+
+.pack-submit-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.pack-submit-row .primary-button {
+  min-width: min(100%, 260px);
+}
+
+.pack-item-actions {
+  flex-wrap: wrap;
+}
+
+/* ---------- Adult explicit lock ---------- */
+
+.adult-menu-lock {
+  border-color: #d8aaa4 !important;
+  color: #743b35 !important;
+  background: #fff8f7 !important;
+}
+
+.adult-menu-lock:hover {
+  background: #f8e8e5 !important;
+}
+
+/* ---------- Better modal rhythm globally ---------- */
+
+.modal-card {
+  max-height: min(90vh, 860px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.modal-actions > button {
+  min-height: 50px;
+}
+
+.danger-button {
+  box-shadow: none;
+}
+
+/* ---------- High contrast ---------- */
+
+html[data-contrast="high"] .toast,
+html[data-contrast="high"] .app-dialog-detail,
+html[data-contrast="high"] .pack-edit-banner {
+  border-color: #000;
+}
+
+html[data-contrast="high"] .app-dialog-icon,
+html[data-contrast="high"] .toast-icon,
+html[data-contrast="high"] .pack-edit-banner > span {
+  border: 1px solid #000;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 620px) {
+  .toast {
+    bottom: 14px;
+    grid-template-columns: 32px minmax(0, 1fr);
+    padding: 9px 12px 9px 9px;
+  }
+
+  .toast-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .app-dialog-card {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  .app-dialog-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 17px;
+  }
+
+  .app-dialog-actions,
+  .data-management-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .app-dialog-actions > button:first-child {
+    order: 2;
+  }
+
+  .app-dialog-actions > button:last-child {
+    order: 1;
+  }
+
+  .pack-submit-row {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .pack-submit-row > button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    transition: none;
+  }
+}
+
+
+/* Keep a compact lock/menu entry reachable while Adult Area is unlocked. */
+html[data-audience="preschool"][data-adult-unlocked="true"] .adult-gate-entry {
+  display: grid !important;
+  grid-template-columns: 22px;
+  min-width: 48px;
+  padding-inline: 10px;
+  border-color: #b9cdc0;
+  background: #edf6f0;
+  color: #285740;
+}
+
+html[data-audience="preschool"][data-adult-unlocked="true"] .adult-gate-entry span:last-child {
+  display: none;
+}

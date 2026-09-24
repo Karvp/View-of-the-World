@@ -1,0 +1,641 @@
+/* ==========================================================================\n   View of the World v3.0 — component-by-component UI polish layer\n   Loaded after design-system.css. Behaviour remains in the existing runtime.\n   ========================================================================== */
+
+:root {
+  --p-bg: #f4f7f4;
+  --p-surface: #ffffff;
+  --p-surface-soft: #f8faf8;
+  --p-ink: #1f3027;
+  --p-muted: #596760;
+  --p-line: #d6dfd8;
+  --p-line-strong: #bccbc0;
+  --p-green: #306b4e;
+  --p-green-dark: #24543d;
+  --p-green-soft: #e5f0e9;
+  --p-shadow: 0 8px 28px rgba(35, 59, 44, .065);
+  --p-shadow-soft: 0 3px 14px rgba(35, 59, 44, .05);
+  --p-r-sm: 12px;
+  --p-r-md: 18px;
+  --p-r-lg: 26px;
+  --p-r-xl: 34px;
+}
+
+html { background: var(--p-bg); }
+body { background: var(--p-bg); color: var(--p-ink); }
+
+/* --- 1. Global rhythm / typography -------------------------------------- */
+.main-content { width: min(1160px, calc(100% - 32px)); }
+.screen { padding-top: 32px; padding-bottom: 64px; }
+.page-narrow { width: min(1000px, 100%); }
+
+.page-heading-row {
+  align-items: end;
+  gap: 28px;
+  margin-bottom: 24px;
+}
+
+.page-heading-row h1 {
+  max-width: 14ch;
+  margin-top: 5px;
+  font-size: clamp(2.35rem, 5vw, 3.65rem);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+}
+
+.page-lead {
+  max-width: 60ch;
+  margin-top: 14px;
+  color: var(--p-muted);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.eyebrow { color: var(--p-green); }
+
+/* --- 2. Header / nav ----------------------------------------------------- */
+.topbar {
+  min-height: 68px;
+  padding-block: 8px;
+  border-bottom-color: #dde5df;
+  background: rgba(244, 247, 244, .94);
+}
+
+.brand-mark { width: 40px; height: 40px; border-radius: 13px; }
+.brand-copy strong { font-size: .95rem; }
+.brand-copy small { font-size: .74rem; }
+
+.main-nav {
+  padding: 3px;
+  gap: 2px;
+  border-radius: 15px;
+}
+
+.nav-button {
+  min-height: 42px;
+  padding: 7px 11px;
+  border-radius: 11px;
+  font-size: .89rem;
+}
+
+.nav-icon { width: 20px; height: 20px; }
+.nav-icon .ui-icon { width: 18px; height: 18px; }
+
+/* --- 3. Child home ------------------------------------------------------- */
+.child-home { gap: 34px; }
+
+.child-start-card {
+  gap: 28px 34px;
+  padding: clamp(26px, 4vw, 42px);
+  border-radius: 30px;
+  box-shadow: var(--p-shadow);
+}
+
+.child-start-copy h1 {
+  max-width: 10ch;
+  font-size: clamp(2.9rem, 5.5vw, 4.8rem);
+  line-height: 1;
+}
+
+.child-start-copy > p {
+  max-width: 33ch;
+  margin-top: 16px;
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+
+.child-state-badge { margin-bottom: 14px; }
+
+.child-primary-choices { gap: 12px; }
+.child-choice {
+  grid-template-columns: 72px 1fr;
+  min-height: 118px;
+  padding: 16px;
+  gap: 14px;
+  border-radius: 24px;
+}
+.child-choice-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 20px;
+}
+.primary-action-icon { width: 36px; height: 36px; }
+.child-choice-copy strong { font-size: 1.28rem; }
+.child-choice-copy small { font-size: .9rem; }
+
+.home-routine {
+  gap: 7px;
+  padding-top: 18px;
+}
+.home-routine-step {
+  min-width: 86px;
+  min-height: 40px;
+  padding: 7px 10px;
+  border-radius: 12px;
+}
+.home-routine-step strong { font-size: .86rem; }
+.home-routine-arrow { width: 14px; color: #a8b8ad; }
+
+.child-section-heading { margin-bottom: -2px; }
+.child-section-heading h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.child-section-number { width: 44px; height: 44px; border-radius: 14px; }
+.voice-cue-button { min-height: 44px; }
+
+.child-activity-grid.activity-grid { gap: 12px; }
+.child-activity-grid .activity-card {
+  grid-template-columns: 82px minmax(0, 1fr) 24px;
+  min-height: 132px;
+  padding: 16px;
+  gap: 15px;
+  border-radius: 22px;
+  box-shadow: var(--p-shadow-soft);
+}
+.child-activity-grid .activity-art {
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+}
+.activity-vector-icon { width: 45px; height: 45px; }
+.child-activity-grid .activity-copy strong { font-size: 1.2rem; }
+.child-activity-grid .activity-copy > span { font-size: .9rem; }
+.child-activity-grid .activity-go { font-size: 1.6rem; }
+
+.calm-garden-card {
+  padding: 20px;
+  gap: 22px;
+  border-radius: 24px;
+}
+.calm-garden-copy h2 { font-size: 1.42rem; }
+.mini-garden { border-radius: 20px; }
+
+/* --- 4. Gameplay chrome ------------------------------------------------- */
+.play-screen { padding-top: 14px; }
+.play-shell { width: min(920px, 100%); }
+.play-topline { margin-bottom: 8px; }
+
+.picture-routine {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 10px;
+  padding: 5px 7px;
+  gap: 3px;
+  border-radius: 17px;
+}
+.picture-routine-step {
+  min-width: 64px;
+  min-height: 56px;
+  padding: 7px 8px;
+  border-radius: 12px;
+}
+.picture-routine-step span:first-child { font-size: .86rem; }
+.picture-routine-step strong { font-size: .85rem; }
+.picture-routine-arrow { font-size: 1rem; }
+
+.game-header { margin-bottom: 10px; }
+.game-heading-row { margin-bottom: 8px; }
+.game-heading-row h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  line-height: 1.03;
+  letter-spacing: -.03em;
+}
+.instruction-card {
+  min-height: 60px;
+  padding: 10px 14px;
+  border-radius: 17px;
+}
+.instruction-card p { font-size: 1rem; }
+.instruction-icon { width: 42px; height: 42px; }
+.read-button { min-height: 42px; }
+
+.game-stage {
+  min-height: 330px;
+  padding: 18px;
+  border-radius: 25px;
+}
+
+.support-dock {
+  margin-top: 10px;
+  padding: 9px;
+  border-radius: 18px;
+}
+.support-actions { gap: 7px; }
+.support-actions button { min-height: 46px; }
+
+/* Daily routine: keep the actual choice visible in an ordinary laptop viewport. */
+.daily-wrap { gap: 14px; width: min(700px, 100%); }
+.daily-context { gap: 7px; }
+.daily-current { min-width: 210px; min-height: 112px; padding: 14px 20px; }
+.daily-current > span { font-size: 3rem; }
+.daily-current strong { font-size: 1.08rem; }
+.daily-arrow { font-size: 1.35rem; }
+.daily-context h2 { font-size: 1.45rem; }
+.daily-choices { gap: 12px; }
+.daily-choice { min-height: 126px; padding: 15px; border-radius: 20px; }
+.daily-choice > span { font-size: 3rem; }
+.daily-choice strong { font-size: 1.08rem; }
+
+/* Match/focus/sequence/pattern/common answer targets. */
+.memory-grid, .find-grid, .sequence-grid, .pattern-options { gap: 10px; }
+.memory-card, .find-card, .sequence-card, .pattern-option, .classify-choice {
+  border-radius: 18px;
+}
+
+/* Correct/retry feedback should read as feedback, not another modal. */
+.answer-feedback {
+  top: 92px;
+  min-width: min(320px, calc(100vw - 24px));
+  padding: 11px 15px 11px 11px;
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(27,46,35,.13);
+}
+.answer-feedback-icon { width: 46px; height: 46px; border-radius: 14px; }
+.answer-feedback-icon .ui-icon { width: 26px; height: 26px; }
+.answer-feedback-copy strong { font-size: 1.08rem; }
+.answer-feedback-copy small { font-size: .86rem; }
+
+/* --- 5. AAC ------------------------------------------------------------- */
+.communication-card {
+  width: min(660px, calc(100vw - 28px));
+  padding: 28px;
+  border-radius: 26px;
+}
+.communication-card h2 { font-size: clamp(2rem, 5vw, 2.7rem); }
+.communication-intro { max-width: 48ch; }
+.communication-grid--core { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.communication-grid button {
+  min-height: 112px;
+  border-radius: 19px;
+  padding: 12px 8px;
+}
+.communication-grid button > span[aria-hidden="true"] {
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  font-size: 1.85rem;
+}
+.communication-grid button strong { font-size: 1rem; }
+.communication-more-button { min-height: 44px; }
+.communication-model-note { padding: 12px 14px; border-radius: 14px; }
+
+/* --- 6. Adult activity catalog ----------------------------------------- */
+.guide-page { gap: 22px; }
+.who-support-panel, .catalog-controls, .design-principles-panel {
+  padding: 22px;
+  border-radius: 24px;
+}
+.support-need-grid, .principle-grid { gap: 10px; margin-top: 16px; }
+.support-need-grid article, .principle-grid article {
+  padding: 15px;
+  border-radius: 16px;
+}
+.support-need-grid article > span { width: 40px; height: 40px; margin-bottom: 9px; }
+.support-need-grid strong, .principle-grid strong { font-size: .98rem; }
+.support-need-grid p, .principle-grid p { font-size: .88rem; line-height: 1.5; }
+
+.catalog-filter-row { gap: 7px; margin: 14px 0 16px; }
+.filter-chip { min-height: 40px; padding: 7px 12px; font-size: .86rem; }
+
+.adult-game-catalog { gap: 12px; }
+.adult-game-card {
+  padding: 18px;
+  gap: 12px;
+  border-radius: 19px;
+  min-height: 520px;
+}
+.adult-game-card-top { gap: 11px; }
+.adult-game-icon { width: 50px; height: 50px; border-radius: 15px; }
+.adult-game-card h3 { font-size: 1.2rem; }
+.catalog-mini-section { padding-top: 10px; }
+.wonder-label { margin-bottom: 7px; font-size: .7rem; letter-spacing: .09em; }
+.catalog-about-section > p:last-child {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.9em;
+}
+.compact-chip-list { max-height: 70px; overflow: hidden; }
+.catalog-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  padding: 9px;
+  border: 1px solid var(--p-line);
+  border-radius: 13px;
+  background: var(--p-surface);
+}
+.catalog-facts span { display: grid; gap: 2px; color: var(--p-muted); font-size: .77rem; }
+.catalog-facts b { color: var(--p-ink); font-size: .72rem; font-weight: 760; }
+.adult-game-card .secondary-button { min-height: 44px; }
+
+/* Detailed game information: easier scan, sticky close, less visual drift. */
+.game-info-card {
+  width: min(800px, calc(100vw - 28px));
+  max-height: 88vh;
+  padding: 26px 30px 30px;
+  border-radius: 25px;
+}
+.game-info-card .modal-close {
+  position: sticky;
+  top: 0;
+  float: right;
+  z-index: 2;
+  min-height: 42px;
+  background: var(--p-surface);
+}
+.game-info-hero { padding-right: 78px; gap: 15px; }
+.game-info-icon { width: 52px; height: 52px; border-radius: 15px; }
+.game-info-hero h2 { font-size: 1.75rem; }
+.game-info-section { margin-top: 18px; padding-top: 16px; }
+.game-info-section h3 { font-size: .98rem; }
+.skill-category-list { gap: 8px; }
+.skill-category-list section { grid-template-columns: 140px 1fr; gap: 10px; }
+.session-info-grid { gap: 8px; }
+.session-info-item { padding: 10px 12px; border-radius: 13px; }
+
+/* --- 7. Progress -------------------------------------------------------- */
+.metric-grid { gap: 10px; }
+.metric-card {
+  min-height: 118px;
+  padding: 16px;
+  border-radius: 19px;
+}
+.metric-card strong { font-size: 1.85rem; }
+.metric-card span { font-size: .88rem; line-height: 1.45; }
+
+.progress-section { padding: 20px; border-radius: 22px; }
+.skill-progress-item, .recent-item { padding-block: 11px; }
+.skill-progress-item p, .recent-item p { font-size: .9rem; }
+
+/* --- 8. Content Studio -------------------------------------------------- */
+.pack-builder, .progress-section { box-shadow: var(--p-shadow-soft); }
+.pack-builder { padding: 22px; border-radius: 22px; }
+.pack-form { gap: 13px; }
+.pack-form input, .pack-form select, .pack-form textarea {
+  min-height: 46px;
+  border-radius: 13px;
+}
+.pack-form textarea { min-height: 150px; }
+.media-pack-panel, .voice-recorder {
+  padding: 14px;
+  border-radius: 15px;
+}
+.pack-library-list:empty { min-height: 0; }
+.empty-state { padding: 32px 18px; }
+.pack-safety-note { border-radius: 15px; }
+
+/* --- 9. Settings -------------------------------------------------------- */
+.settings-preview { display: none; }
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 18px;
+}
+.preset-card {
+  min-height: 90px;
+  padding: 14px;
+  border-radius: 17px;
+}
+.preset-card strong { font-size: 1rem; }
+.preset-card span { font-size: .82rem; line-height: 1.45; }
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.settings-card {
+  padding: 17px;
+  border-radius: 19px;
+  min-width: 0;
+}
+.settings-card--support-profile { grid-column: 1 / -1; }
+.settings-card legend { padding-inline: 5px; font-size: .94rem; }
+.choice-row, .toggle-row, .select-row { gap: 11px; padding: 10px 0; }
+.choice-row strong, .toggle-row strong, .select-row strong { font-size: .92rem; }
+.choice-row small, .toggle-row small, .select-row small { font-size: .81rem; line-height: 1.45; }
+.select-row select {
+  width: auto;
+  min-width: 174px;
+  max-width: 48%;
+  min-height: 42px;
+}
+.settings-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* --- 10. Modals / adult gate / pause ----------------------------------- */
+.modal-card { border-radius: 25px; }
+.pause-card { width: min(500px, calc(100vw - 28px)); padding: 26px; }
+.pause-visual { width: 68px; height: 68px; }
+.adult-gate-card { width: min(520px, calc(100vw - 28px)); padding: 26px; }
+.adult-hold-button { min-height: 72px; border-radius: 18px; }
+
+/* --- 11. Mobile --------------------------------------------------------- */
+@media (max-width: 760px) {
+  .main-content { width: min(100% - 20px, 1160px); }
+  .screen { padding-top: 22px; padding-bottom: 48px; }
+
+  .page-heading-row h1 { max-width: none; font-size: clamp(2rem, 10vw, 2.8rem); }
+  .page-heading-row { align-items: start; }
+
+  .communication-grid--core { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  .adult-game-catalog { grid-template-columns: 1fr; }
+  .adult-game-card { min-height: 0; }
+
+  .preset-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .settings-grid { grid-template-columns: 1fr; }
+  .settings-card--support-profile { grid-column: auto; }
+  .select-row { align-items: stretch; flex-direction: column; }
+  .select-row select { width: 100%; max-width: none; }
+
+  .game-info-card { padding: 22px 20px 24px; }
+  .skill-category-list section { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .topbar { min-height: 60px; }
+  .main-content { width: min(100% - 16px, 1160px); }
+
+  .child-home { gap: 26px; }
+  .child-start-card { padding: 20px 16px; gap: 18px; border-radius: 22px; }
+  .child-start-copy h1 { font-size: clamp(2.4rem, 11vw, 3rem); }
+  .child-start-copy > p { font-size: .96rem; }
+  .child-primary-choices { gap: 10px; }
+  .child-choice { min-height: 96px; grid-template-columns: 58px 1fr; padding: 12px; }
+  .child-choice-icon { width: 58px; height: 58px; border-radius: 17px; }
+  .primary-action-icon { width: 32px; height: 32px; }
+
+  .home-routine { gap: 4px; padding-top: 14px; }
+  .home-routine-step { min-width: 0; flex: 0 0 auto; padding: 6px 8px; }
+  .home-routine-step strong { font-size: .78rem; }
+  .home-routine-arrow { width: 10px; }
+
+  .child-section-heading h2 { font-size: 1.8rem; }
+  .child-section-number { width: 40px; height: 40px; }
+
+  .child-activity-grid .activity-card {
+    grid-template-columns: 68px minmax(0, 1fr) 18px;
+    min-height: 108px;
+    padding: 12px;
+    border-radius: 19px;
+  }
+  .child-activity-grid .activity-art { width: 64px; height: 64px; border-radius: 17px; }
+  .activity-vector-icon { width: 38px; height: 38px; }
+  .child-activity-grid .activity-copy strong { font-size: 1.12rem; }
+
+  /* Garden becomes a compact secondary reward card instead of a long section. */
+  .calm-garden-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+    gap: 14px;
+    padding: 14px;
+    align-items: center;
+  }
+  .mini-garden { grid-column: 1; grid-row: 1; order: 0; border-radius: 16px; }
+  .calm-garden-copy { grid-column: 2; grid-row: 1; }
+  .calm-garden-copy .eyebrow { display: none; }
+  .calm-garden-copy h2 { margin: 0 0 4px; font-size: 1.18rem; }
+  .calm-garden-copy > strong { font-size: .86rem; line-height: 1.4; }
+  .calm-garden-copy > small, .calm-garden-copy .garden-dots { display: none; }
+  .calm-garden-copy .world-level { margin-top: 8px; font-size: .74rem; }
+
+  .picture-routine { margin-bottom: 7px; }
+  .picture-routine-step { min-width: 56px; min-height: 50px; padding: 5px; }
+  .game-heading-row h1 { font-size: 2.15rem; }
+  .instruction-card { padding: 8px 10px; }
+  .instruction-card p { font-size: .94rem; }
+  .game-stage { min-height: 300px; padding: 12px 8px; border-radius: 20px; }
+
+  .daily-wrap { gap: 11px; }
+  .daily-current { min-width: 170px; min-height: 98px; }
+  .daily-current > span, .daily-choice > span { font-size: 2.5rem; }
+  .daily-choices { gap: 8px; }
+  .daily-choice { min-height: 112px; }
+
+  .answer-feedback { top: 74px; }
+
+  .communication-card { padding: 22px 16px; border-radius: 22px; }
+  .communication-grid button { min-height: 104px; }
+  .communication-model-note { font-size: .83rem; }
+
+  .metric-grid { grid-template-columns: 1fr 1fr; }
+  .metric-card { min-height: 104px; padding: 13px; }
+  .metric-card strong { font-size: 1.55rem; }
+
+  .who-support-panel, .catalog-controls, .design-principles-panel, .progress-section, .pack-builder {
+    padding: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .child-choice,
+  .child-activity-grid .activity-card,
+  .filter-chip,
+  .preset-card { transition: none !important; }
+}
+
+/* --- 12. Micro-interaction and form consistency ------------------------- */
+button:not(:disabled) { cursor: pointer; }
+button:disabled { cursor: not-allowed; opacity: .52; }
+
+.primary-button:active,
+.secondary-button:active,
+.soft-button:active,
+.quiet-button:active,
+.child-choice:active,
+.activity-card:active,
+.filter-chip:active,
+.preset-card:active,
+.communication-grid button:active {
+  transform: translateY(1px) scale(.995);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 auto;
+  accent-color: var(--p-green);
+}
+
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-color: var(--p-line);
+  color: var(--p-ink);
+  background: #fbfcfb;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):hover,
+select:hover,
+textarea:hover { border-color: var(--p-line-strong); }
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--p-green);
+  box-shadow: 0 0 0 3px rgba(48,107,78,.11);
+  outline: none;
+}
+
+select { cursor: pointer; }
+.danger-button { border-color: #c9a5a2; color: #8a413d; background: #fffafa; }
+.danger-button:hover { border-color: #a96863; background: #fff4f3; }
+
+.status-chip, .support-badge, .world-level {
+  min-height: 30px;
+  padding-inline: 10px;
+  border-radius: 999px;
+}
+
+.empty-state {
+  border: 1px dashed var(--p-line-strong);
+  border-radius: 17px;
+  background: var(--p-surface-soft);
+}
+
+/* Display controls use the full row; this removes the orphaned half-column in Settings. */
+.settings-card--display-controls {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 20px;
+}
+.settings-card--display-controls legend { grid-column: 1 / -1; }
+.settings-card--display-controls .select-row,
+.settings-card--display-controls .toggle-row { min-width: 0; }
+
+/* If the catalog has an odd final card, center it rather than leaving a visual hole. */
+.adult-game-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc(50% - 6px);
+  justify-self: center;
+}
+
+/* Scrollable reading surfaces get a quiet scrollbar rather than browser-heavy chrome. */
+.game-info-card,
+.communication-card {
+  scrollbar-width: thin;
+  scrollbar-color: #b9c8bd transparent;
+}
+.game-info-card::-webkit-scrollbar,
+.communication-card::-webkit-scrollbar { width: 8px; }
+.game-info-card::-webkit-scrollbar-thumb,
+.communication-card::-webkit-scrollbar-thumb { background: #b9c8bd; border-radius: 999px; }
+
+@media (max-width: 760px) {
+  .settings-card--display-controls {
+    grid-column: auto;
+    grid-template-columns: 1fr;
+  }
+  .settings-card--display-controls legend { grid-column: auto; }
+  .adult-game-card:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100%;
+  }
+}

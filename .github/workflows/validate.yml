@@ -1,0 +1,42 @@
+name: Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP 8.1
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          coverage: none
+
+      - name: Validate JavaScript syntax
+        run: node --check app.js
+
+      - name: Validate PHP syntax
+        run: |
+          php -l index.php
+          php -l manifest.php
+
+      - name: Check required production assets
+        run: |
+          test -s app.js
+          test -s style.css
+          test -s design-system.css
+          test -s dialog-system.css
+          test -s ui-polish.css
+          test -s qa-polish.css
+          test -s sw.js
+          test -s manifest.webmanifest
+          test -s assets/icon.svg
