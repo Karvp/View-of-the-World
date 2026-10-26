@@ -22,12 +22,20 @@ jobs:
           coverage: none
 
       - name: Validate JavaScript syntax
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check sw.js
+
+      - name: Check static assets and PWA manifest
+        run: python3 -m unittest discover -s tests -v
 
       - name: Validate PHP syntax
         run: |
           php -l index.php
           php -l manifest.php
+
+      - name: Serve production PHP and check HTTP routes
+        run: python3 tests/test_php_http.py
 
       - name: Check required production assets
         run: |

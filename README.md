@@ -52,6 +52,8 @@ php -l manifest.php
 └── assets/icon.svg           # Application icon
 ```
 
+For a reproducible HTTP check, run `python3 tests/test_php_http.py` with PHP CLI installed. This starts PHP's local development server, verifies the production page, manifest, security headers and six assets, then stops the server. The same test runs in GitHub Actions.
+
 ## Deployment
 
 The application can be served from a standard PHP 8.1+ web host. Place the runtime files in the site's document root and open `index.php`. No build step is required.
