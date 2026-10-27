@@ -12,7 +12,7 @@
 - A quick communication board for expressing needs.
 - Local progress tracking and personalization.
 - Family-created content packs using familiar images and optional voice data.
-- Adult-facing progress, content, and settings areas protected by a hold interaction.
+- Adult-facing progress, content, and settings areas opened through a hold interaction.
 - Switch-scanning and reduced-complexity options for additional accessibility support.
 - Installable PWA behavior through the web manifest and service worker.
 
